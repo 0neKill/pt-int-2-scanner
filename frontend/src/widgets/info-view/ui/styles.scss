@@ -1,0 +1,11 @@
+.info-view {
+  display: flex;
+  width: 100%;
+  gap: 35px;
+  height: 100%;
+  position: relative;
+
+  &__empty {
+    margin: 0 auto;
+  }
+}

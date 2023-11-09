@@ -1,0 +1,18 @@
+.card {
+  min-width: 300px;
+  &__description {
+    position: relative;
+    font-weight: 700;
+
+    &:before {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      left: 0;
+      bottom: 0;
+      background-color: #881242;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  postgres_db:
+    image: postgres:14.2-alpine
+    container_name: postgres_db
+    networks:
+      - postgres
+    environment:
+      - POSTGRES_DB=scanner
+      - POSTGRES_PASSWORD=qwerty123
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+
+  frontend_app:
+    build:
+      dockerfile: Dockerfile
+      context: frontend
+    container_name: frontend_app
+    depends_on:
+      - postgres_db
+      - backend_app
+    networks:
+      - postgres
+    ports:
+      - "8081:80"
+
+  backend_app:
+    container_name: backend_app
+    build:
+      dockerfile: Dockerfile
+      context: backend
+    networks:
+      - postgres
+    depends_on:
+      - postgres_db
+    ports:
+      - "8080:8080"
+
+networks:
+  postgres: { }
