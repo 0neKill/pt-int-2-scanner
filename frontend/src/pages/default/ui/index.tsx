@@ -1,6 +1,7 @@
-import { Layout } from '@/shared/ui';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+
 import { Routes } from '@/shared/utils';
+import { Layout } from '@/shared/ui';
 
 const defaultSelected = {
     [Routes.DEFAULT]: '1',

@@ -1,6 +1,7 @@
+import type { FC } from 'react';
+
 import { withHoc } from '@/app/hocs';
 import { RouterConfiguration } from './routes';
-import { FC } from 'react';
 
 
 export const App = withHoc(() => {

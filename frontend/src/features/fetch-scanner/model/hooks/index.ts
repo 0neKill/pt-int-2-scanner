@@ -1,9 +1,10 @@
+import { useCallback, useEffect } from 'react';
 import { useMutation, useQuery } from 'react-query';
+import { message } from 'antd';
+
 import { $api } from '@/shared/api';
 import { ApiRoutes } from '@/shared/utils';
-import { HostnameRequest, HostnameResponse } from '@/entities/scanner';
-import { useCallback, useEffect } from 'react';
-import { message } from 'antd';
+import type { HostnameRequest, HostnameResponse } from '@/entities/scanner';
 
 
 export const useFetchScannerHostname = () => {

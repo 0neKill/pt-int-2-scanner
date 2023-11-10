@@ -1,6 +1,6 @@
+import { ScannerSettings, DrawerHostName } from '@/widgets';
+
 import './styles.scss';
-import { ScannerSettings } from '@/widgets/scanner-settings/ui';
-import { DrawerHostName } from '@/widgets';
 
 export default function Main() {
     return (

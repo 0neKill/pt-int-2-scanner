@@ -12,4 +12,5 @@ export type HostnameResponse = HostnameRequest & {
     operatingSystem: string,
     architecture: string
     version: string,
+    commands: string
 }

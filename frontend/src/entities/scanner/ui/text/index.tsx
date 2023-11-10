@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { clsx } from 'clsx';
+
 import './styles.scss';
 
 type TextProps = FC<{

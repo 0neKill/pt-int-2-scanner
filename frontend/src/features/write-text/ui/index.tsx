@@ -1,6 +1,7 @@
-import { getIp, getLogin, getPort, Text } from '@/entities/scanner';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useSelector } from 'react-redux';
+
+import { getIp, getLogin, getPort, Text } from '@/entities/scanner';
 
 type WriteTextProps = FC<unknown>
 

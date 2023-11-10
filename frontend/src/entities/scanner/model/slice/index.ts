@@ -1,4 +1,4 @@
-import { createSlice, Draft, PayloadAction, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice, type Draft, type PayloadAction, type SliceCaseReducers } from '@reduxjs/toolkit';
 
 import { HostnameRequest } from '@/entities/scanner';
 
