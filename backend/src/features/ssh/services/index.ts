@@ -5,7 +5,7 @@ import type { HostNameCtlDto } from '../../scanner/__types__';
 
 @Injectable()
 export class SshService {
-    async connect(data: HostNameCtlDto): Promise<{ getHostInformation: () => Promise<string> }> {
+    async connect(data: HostNameCtlDto): Promise<{ getHostInformation: (command?: string) => Promise<string> }> {
         return new Promise((resolve, reject) => {
             const client = new Client();
             client.connect({
@@ -23,10 +23,10 @@ export class SshService {
     }
 
     private getHostInformation(client: Client) {
-        return (): Promise<string> => {
+        return (command: string = 'hostnamectl'): Promise<string> => {
             return new Promise((resolve, reject) => (
                 client.on('ready', () => {
-                    client.exec('hostnamectl', (err, stream) => {
+                    client.exec(command, (err, stream) => {
                         if (err) throw err;
 
                         stream.on('close', () => {

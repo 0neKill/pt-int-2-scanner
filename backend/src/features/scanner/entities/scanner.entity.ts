@@ -30,5 +30,8 @@ export class ScannerEntity {
     @Column({ type: 'character varying', nullable: true })
     architecture: string;
 
+    @Column({ type: 'character varying', nullable: true })
+    commands: string;
+
 }
 

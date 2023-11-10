@@ -20,7 +20,10 @@ export class ScannerService {
         try {
             const connection = await this._sshService.connect({ ip, port, login, password });
             const text = await connection.getHostInformation();
-            const correctData = HostNameCtlFactory.create({ text });
+            const connection2 = await this._sshService.connect({ ip, port, login, password });
+            const versionText = await connection2.getHostInformation('lsb_release -a');
+
+            const correctData = HostNameCtlFactory.create({ text, versionText });
             const _password = await this._hash(password);
             const scannerEntity = await this._scannerRepository.create({
                 ...correctData,
@@ -28,6 +31,7 @@ export class ScannerService {
                 ip,
                 login,
                 password: _password,
+                commands: 'hostnamectl; lsb_release -a',
             });
 
             return {
@@ -54,8 +58,7 @@ export class ScannerService {
         return new Promise((resolve, reject) => {
             bcrypt.hash(password, 10, function(err, hash) {
                 if (err) {
-                    console.log(err,'tytyty');
-                    reject(err)
+                    reject(err);
                 }
                 resolve(hash);
             });

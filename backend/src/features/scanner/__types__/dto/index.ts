@@ -29,17 +29,16 @@ export type HostNameCtl = {
 
 export class HostNameCtlFactory {
 
-    static create({ text }: { text: string }): HostNameCtl {
-
+    static create({ text, versionText }: { text: string, versionText: string }): HostNameCtl {
         const regexStaticHostname = /Static hostname: (.+)\n/;
         const regexOperatingSystem = /Operating System: (.+)\n/;
         const regexArchitecture = /Architecture: (.+)\n/;
-        const regexVersion = /(\d+\.\d+\.\d+)/;
+        const regexVersion = /Release:\t(.+)\n/;
 
         const staticHostname = HostNameCtlFactory._matchByText(text, regexStaticHostname);
         const operatingSystem = HostNameCtlFactory._matchByText(text, regexOperatingSystem);
         const architecture = HostNameCtlFactory._matchByText(text, regexArchitecture);
-        const version = HostNameCtlFactory._matchByText(operatingSystem, regexVersion);
+        const version = HostNameCtlFactory._matchByText(versionText, regexVersion);
 
         return {
             staticHostname, operatingSystem, architecture, version,
@@ -47,6 +46,6 @@ export class HostNameCtlFactory {
     };
 
     private static _matchByText(text: string, regex: RegExp): string {
-        return text.match(regex)[1];
+        return text.match(regex)?.[1] ?? '';
     };
 }
